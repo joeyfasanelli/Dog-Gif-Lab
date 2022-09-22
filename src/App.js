@@ -13,6 +13,7 @@ export default function App() {
     const data = await response.json();
     setGifImg(data);
   };
+
   return (
     <div className="App">
      <h1>Random Dog Generator</h1>
