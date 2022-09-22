@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
+import Button from "./components/Button";
+import Gif from "./components/Gif";
 import './App.css';
 
-function App() {
+export default function App() {
+  const [gifImg, setGifImg] = useState({});
+
+  const handleClick = async () => {
+    const gifImg = `https://dog.ceo/api/breeds/image/random`;
+
+    const response = await fetch(gifImg);
+    const data = await response.json();
+    setGifImg(data);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Random Dog Generator</h1>
+     <Button handleClickApp={handleClick} />
+     <Gif gifImg={gifImg}/>
     </div>
-  );
+  )
 }
-
-export default App;
